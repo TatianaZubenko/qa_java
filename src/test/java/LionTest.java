@@ -20,16 +20,17 @@ public class LionTest {
     public void getKittensTest() throws Exception {
         Lion lion = new Lion("Самка", feline);
         Mockito.when(feline.getKittens()).thenReturn(3);
-        lion.getKittens();
-        Mockito.verify(feline).getKittens();
+        int actual = lion.getKittens();
+        Assert.assertEquals(3, actual);
     }
 
     @Test
     public void getFoodTest() throws Exception {
         Lion lion = new Lion("Самец", feline);
-        Mockito.when(feline.getFood("Хищник")).thenReturn(List.of("Животные", "Птицы", "Рыба"));
-        lion.getFood();
-        Mockito.verify(feline).getFood("Хищник");
+        List<String> expectedFood = List.of("Животные", "Птицы", "Рыба");
+        Mockito.when(feline.getFood("Хищник")).thenReturn(expectedFood);
+        List<String> actualFood = lion.getFood();
+        Assert.assertEquals(expectedFood, actualFood);
     }
 
     @Test
